@@ -40,8 +40,8 @@ $(function () {
 
     //watchDataBase();
     //generateOldMessages();
-    setInterval(generateOldMessages, 500);
-    //setInterval(generateCoordinates, 500);
+    //setInterval(generateOldMessages, 500);
+    setInterval(generateCoordinates, 500);
 });
 
 function goToGrid(){
@@ -75,6 +75,7 @@ function sendMessage1(){
         dataType: 'json'
     }).done(function (data, textStatus, jqXHR) {
         console.log("Message sent successfully")
+        generateOldMessages()
         //$("#sendMessage1").val("").trigger('change');
         //$('#sendMessage1').attr('value', '');
     })
@@ -103,6 +104,7 @@ function sendMessage2(){
         dataType: 'json'
     }).done(function (data, textStatus, jqXHR) {
         console.log("Message sent successfully")
+        generateOldMessages()
         //$("#sendMessage2").val("").trigger('change');
         //$('#sendMessage2').attr('value', '');
     })
@@ -138,40 +140,6 @@ function generateOldMessages(){
     .fail(function (jqXHR, textStatus, errorThrown) {
         console.log("Message not sent successfully");
     });
-    /*const uri = "mongodb://127.0.0.1/";
-    const clientDB = new MongoClient(uri);
-    const database = clientDB.db("jcaInterview");
-    const Client = database.collection("Client");
-    Client.findOne({ email: sessionStorage.getItem("userEmail") }, function (err, client) {
-        if (err) {
-          console.log("Err!")
-        } else if (!client) {
-          // Username not in the database
-          console.log("Username not in the database");
-        } else {
-          for (let person in client.messageHistoryHash){
-            if(client.messageHistoryHash[person].partner == sessionStorage.getItem("un1")){
-              let msgFeed = '';
-              for(let msg of client.messageHistoryHash[person].messageLogs){
-                msgFeed = msgFeed + msg.sender + ': ' + msg.message + '\n'; 
-              }
-              $("#messageUser1").html(msgFeed)
-              break;
-            }
-          }
-
-          for (let person in client.messageHistoryHash){
-            if(client.messageHistoryHash[person].partner == sessionStorage.getItem("un2")){
-              let msgFeed = '';
-              for(let msg of client.messageHistoryHash[person].messageLogs){
-                msgFeed = msgFeed + msg.sender + ': ' + msg.message + '\n'; 
-              }
-              $("#messageUser2").html(msgFeed)
-              break;
-            }
-          }
-        }
-    });*/
 }
 
 function generateCoordinates(){
