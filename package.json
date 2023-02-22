@@ -1,0 +1,25 @@
+{
+  "name": "jcainterview",
+  "version": "1.0.0",
+  "description": "Client Messenger",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Mazi",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mongodb": "^4.0.7",
+    "amqplib": "^0.10.3",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jquery-validation": "^1.19.5",
+    "jwt-simple": "^0.5.6",
+    "mongoose": "^6.0.11",
+    "morgan": "~1.9.1"
+  }
+}

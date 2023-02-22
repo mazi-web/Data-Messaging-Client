@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Client Messenger Home</title>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <script type="module" src="javascripts/home.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./stylesheets/main.css" />
+  </head>
+  <body>
+    <div class="container home-main">
+      <div class="row">
+        <div class="form-container col-md-5 pb-0">
+          <div class="card my-5 logincard">
+            <div class="card-body">
+              <h5 class="card-title" id="un1">User Name 1</h5>
+              <form>
+                <div class="row">
+                    <div class="col">
+                      <label for="currentLocation">Current Location</label>
+                      <input id="currentLocation" type="text" class="form-control" placeholder="" name="currentLocation" disabled>
+                    </div>
+                    <div class="col">
+                      <label for="distanceUser1">Distance from User In Km</label>
+                      <input id="distanceUser1" type="text" class="form-control" placeholder="" name="distanceUser1" disabled>
+                    </div>
+                </div>
+                <label for="messageUser1">Message Feed</label>
+                <textarea class="form-control" rows="10" id="messageUser1" name="messageUser1" disabled></textarea><br>
+                <input id="sendMessage1" type="text" class="form-control" placeholder="Enter Message" name="sendMessage1"><br>
+                <button id="btnsendMessage1" type="button" class="btn btn-outline-success" style="display: block; margin: auto;">Send</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-container col-md-5 pb-0">
+            <div class="card my-5 usercard">
+              <div class="card-body">
+                <h5 class="card-title" id="un2">User Name 2</h5>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                          <label for="currentLocation2">Current Location</label>
+                          <input id="currentLocation2" type="text" class="form-control" placeholder="" name="currentLocation2" disabled>
+                        </div>
+                        <div class="col">
+                          <label for="distanceUser2">Distance from User In Km</label>
+                          <input id="distanceUser2" type="text" class="form-control" placeholder="" name="distanceUser2" disabled>
+                        </div>
+                    </div>
+                    <label for="messageUser2">Message Feed</label>
+                    <textarea class="form-control" rows="10" id="messageUser2" name="messageUser2" disabled></textarea><br>
+                    <input id="sendMessage2" type="text" class="form-control" placeholder="Enter Message" name="sendMessage2"><br>
+                    <button id="btnsendMessage2" type="button" class="btn btn-outline-success" style="display: block; margin: auto;">Send</button>
+                </form>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <button style="width: 7vw; margin: auto;"
+          id="btnGridView"
+          type="button"
+          class="btn btn-primary sign_log"
+        >
+          Grid View
+        </button>
+        <button style="width: 5vw; margin: auto;"
+          id="btnLogOut"
+          type="button"
+          class="btn btn-primary sign_log"
+        >
+          Logout
+        </button>
+      </div>
+      <div class="row">
+        <img src="./images/jca-logo.svg" style="display: block; margin: auto; width: 10vw; height: 10vw;">
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

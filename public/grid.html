@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Client Messenger Grid View</title>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <script type="module" src="javascripts/home.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./stylesheets/main.css" />
+  </head>
+  <body>
+    <div class="container home-main">
+      <div class="row">
+        <div class="form-container col-md-5 col-sm-5 col-xs-5 pb-0">
+          <div class="card my-5 logincard">
+            <div class="card-body">
+              <h5 class="card-title" id="gridView">Grid View(Distance in Km)</h5>
+              <div class="row">
+                <div class="col m-auto"></div>
+                <div class="col m-auto" id="row1col2">David</div>
+                <div class="col m-auto" id="row1col3">Jacques</div>
+                <div class="col m-auto" id="row1col4">Nissa</div>
+              </div>
+              <div class="row">
+                <div class="col m-auto">David</div>
+                <div class="col m-auto" id="row2col2">0</div>
+                <div class="col m-auto" id="row2col3"></div>
+                <div class="col m-auto" id="row2col4"></div>
+              </div>
+              <div class="row">
+                <div class="col m-auto">Jacques</div>
+                <div class="col m-auto" id="row3col2"></div>
+                <div class="col m-auto" id="row3col3">0</div>
+                <div class="col m-auto" id="row3col4"></div>
+              </div>
+              <div class="row">
+                <div class="col m-auto">Nissa</div>
+                <div class="col m-auto" id="row4col2"></div>
+                <div class="col m-auto" id="row4col3"></div>
+                <div class="col m-auto" id="row4col4">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <button style="width: 5vw; margin: auto;"
+          id="btnReturn"
+          type="button"
+          class="btn btn-primary sign_log"
+        >
+          Return
+        </button>
+      </div>
+      <div class="row">
+        <img src="./images/jca-logo.svg" style="display: block; margin: auto; width: 10vw; height: 10vw;">
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
