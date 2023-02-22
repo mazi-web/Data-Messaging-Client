@@ -41,6 +41,7 @@ $(function () {
     //watchDataBase();
     //generateOldMessages();
     //setInterval(generateOldMessages, 500);
+    generateOldMessages();
     setInterval(generateCoordinates, 500);
 });
 
@@ -75,7 +76,7 @@ function sendMessage1(){
         dataType: 'json'
     }).done(function (data, textStatus, jqXHR) {
         console.log("Message sent successfully")
-        generateOldMessages()
+        generateOldMessages();
         //$("#sendMessage1").val("").trigger('change');
         //$('#sendMessage1').attr('value', '');
     })
@@ -104,7 +105,7 @@ function sendMessage2(){
         dataType: 'json'
     }).done(function (data, textStatus, jqXHR) {
         console.log("Message sent successfully")
-        generateOldMessages()
+        generateOldMessages();
         //$("#sendMessage2").val("").trigger('change');
         //$('#sendMessage2').attr('value', '');
     })
