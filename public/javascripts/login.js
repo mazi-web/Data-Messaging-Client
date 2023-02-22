@@ -20,7 +20,7 @@ function login() {
     };
 
     $.ajax({
-        url: '/clients/login',
+        url: '/clients/signup',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(txdata),

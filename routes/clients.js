@@ -158,6 +158,37 @@ async function listen() {
  }
 }
 
+router.post("/signup", function (req, res) {
+  Client.findOne({ email: req.body.email }, function (err, client) {
+    if (err) res.status(401).json({ success: false, err: err });
+    else if (client) {
+      res.status(401).json({ success: false, msg: "This email already used" });
+    } else {
+      //const passwordHash = bcrypt.hashSync(req.body.password, 10);
+      const newClient = new Client({
+        name: 'David',
+        lastname: 'Mazi',
+        email: req.body.email,
+        password: req.body.password,
+        phoneNumber: '9514819428',
+        location: '',
+        messageHistoryHash: [],
+      });
+
+      newClient.save(function (err, client) {
+        if (err) {
+          res.status(400).json({ success: false, err: err });
+        } else {
+          let msgStr = `Client (${req.body.email}) account has been created.`;
+          res.status(201).json({ success: true, message: msgStr });
+          console.log(msgStr);
+        }
+      });
+    }
+  });
+});
+
+
 router.post("/login", function (req, res) {
     if (!req.body.email || !req.body.password) {
       res.status(401).json({ error: "Missing email and/or password" });
