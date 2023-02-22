@@ -42,7 +42,7 @@ $(function () {
     //generateOldMessages();
     //setInterval(generateOldMessages, 500);
     generateOldMessages();
-    setInterval(generateCoordinates, 500);
+    //setInterval(generateCoordinates, 500);
 });
 
 function goToGrid(){
