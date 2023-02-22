@@ -222,6 +222,11 @@ router.post("/sendMessage", function (req, res) {
    send(req);
 });
 
+router.post("/listenForCoord", function (req, res) {
+  listenCoord();
+});
+
+
 var coordObj;
 async function listenCoord() {
   try {
@@ -255,7 +260,8 @@ async function sendCoord(msg) {
     console.error(ex);
   }
   finally{
-    listenCoord();
+    //Move this
+    //listenCoord();
   }
 }
 

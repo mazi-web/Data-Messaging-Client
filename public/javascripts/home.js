@@ -41,6 +41,19 @@ $(function () {
     //watchDataBase();
     //generateOldMessages();
     //setInterval(generateOldMessages, 500);
+    let shell = {}
+    $.ajax({
+        url: '/clients/listenForCoord',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(shell),
+        dataType: 'json'
+    }).done(function (data, textStatus, jqXHR) {
+        console.log("Listening for coodinates")
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("Failed to listen for coodinates");
+    });
     generateOldMessages();
     //setInterval(generateCoordinates, 500);
 });
