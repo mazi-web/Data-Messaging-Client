@@ -8,6 +8,7 @@ const fs = require("fs");
 const { resolve } = require("path");
 //const { fork } = require('child_process');
 
+//To be for encryption of messages before storing in database
 const secret = fs.readFileSync(__dirname + "/../keys/jwtkey").toString();
 
 //Math Stuff
@@ -64,7 +65,6 @@ setInterval(() => {
 }, 1000);
 
 async function send(req) {
-  //return Promise(async resolve => {
   const msgBuffer = Buffer.from(JSON.stringify({ sender: req.body.sender, receiver: req.body.receiver, message: req.body.message }));
   try {
     const connection = await amqp.connect("amqp://localhost:5672");
@@ -110,7 +110,6 @@ async function send(req) {
     console.log("SOMETHING IS WRONG WITH RABBIT")
     console.error(ex);
   }
-  //});
  }
 
 async function listen() {
@@ -223,11 +222,7 @@ router.post("/login", function (req, res) {
     });
 });
 
-async function forAwaiting(req){
-  await send(req)
-}
 router.post("/sendMessage", function (req, res) {
-  //forAwaiting(req);
   send(req)
   res.status(201).json({msg: 'Message sent successfully'})
 });

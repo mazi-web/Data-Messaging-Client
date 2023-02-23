@@ -95,9 +95,6 @@ function sendMessage1(){
     }).done(function (data, textStatus, jqXHR) {
         console.log("Message sent successfully")
         setTimeout(generateOldMessages, 200)
-        
-        //$("#sendMessage1").val("").trigger('change');
-        //$('#sendMessage1').attr('value', '');
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);
@@ -125,8 +122,6 @@ function sendMessage2(){
     }).done(function (data, textStatus, jqXHR) {
         console.log("Message sent successfully")
         setTimeout(generateOldMessages, 200)
-        //$("#sendMessage2").val("").trigger('change');
-        //$('#sendMessage2').attr('value', '');
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
         console.log("Message not sent successfully");
@@ -250,6 +245,7 @@ function generateCoordinates(){
     //forked.send({ hello: 'world' });
 }
 
+//Database change listener, not used
 function watchDataBase(){
     const uri = "mongodb://127.0.0.1/";
     const clientDB = new MongoClient(uri);
