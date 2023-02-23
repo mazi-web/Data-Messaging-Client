@@ -5,6 +5,7 @@ const amqp = require("amqplib");
 const jwt = require("jwt-simple");
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
+const { resolve } = require("path");
 //const { fork } = require('child_process');
 
 const secret = fs.readFileSync(__dirname + "/../keys/jwtkey").toString();
@@ -63,6 +64,7 @@ setInterval(() => {
 }, 1000);
 
 async function send(req) {
+  //return Promise(async resolve => {
   const msgBuffer = Buffer.from(JSON.stringify({ sender: req.body.sender, receiver: req.body.receiver, message: req.body.message }));
   try {
     const connection = await amqp.connect("amqp://localhost:5672");
@@ -75,7 +77,7 @@ async function send(req) {
 
     Client.findOne({ email: req.body.sender }, function (err, client) {
       if (err) {
-        console.log("Err!")
+        console.log("Error in database!")
       } else if (!client) {
         // Username not in the database
         console.log("Username not in the database");
@@ -96,17 +98,19 @@ async function send(req) {
 
         client.save(function (err, device) {
           if (err) {
-            console.log("Err2!")
+            console.log("Err in saving!")
           } else {
-            console.log("Success2");
+            console.log("Success sending message to the queue");
           }
         });
       }
     });
 
   } catch (ex) {
+    console.log("SOMETHING IS WRONG WITH RABBIT")
     console.error(ex);
   }
+  //});
  }
 
 async function listen() {
@@ -114,7 +118,7 @@ async function listen() {
    const connection = await amqp.connect("amqp://localhost:5672");
    const channel = await connection.createChannel();
    await channel.assertQueue("msgStream");
-   channel.consume("msgStream", message => {
+   await channel.consume("msgStream", message => {
    const input = JSON.parse(message.content.toString());
 
    Client.findOne({ email: input.receiver }, function (err, client) {
@@ -142,7 +146,7 @@ async function listen() {
           if (err) {
             console.log("Err2!")
           } else {
-            console.log("Success2");
+            console.log("Success receiving message");
           }
         });
       }
@@ -154,6 +158,7 @@ async function listen() {
    });
    console.log(`Waiting for messages...`);
  } catch (ex) {
+    console.log("SOMETHING IS WRONG WITH RABBIT")
    console.error(ex);
  }
 }
@@ -218,12 +223,18 @@ router.post("/login", function (req, res) {
     });
 });
 
+async function forAwaiting(req){
+  await send(req)
+}
 router.post("/sendMessage", function (req, res) {
-   send(req);
+  //forAwaiting(req);
+  send(req)
+  res.status(201).json({msg: 'Message sent successfully'})
 });
 
 router.post("/listenForCoord", function (req, res) {
   listenCoord();
+  res.status(201).json({msg: 'Listening for coordinates'})
 });
 
 
@@ -233,7 +244,7 @@ async function listenCoord() {
     const connection = await amqp.connect("amqp://localhost:5672");
     const channel = await connection.createChannel();
     await channel.assertQueue("coordStream");
-    channel.consume("coordStream", message => {
+    await channel.consume("coordStream", message => {
     const input = JSON.parse(message.content.toString());
     //console.log(input);
       console.log(`Received coordinates`);
@@ -242,6 +253,7 @@ async function listenCoord() {
     });
     console.log(`Waiting for coordinates...`);
   } catch (ex) {
+    console.log("SOMETHING IS WRONG WITH RABBIT")
     console.error(ex);
   }
 }
@@ -257,6 +269,7 @@ async function sendCoord(msg) {
     await connection.close();
 
   } catch (ex) {
+    console.log("SOMETHING IS WRONG WITH RABBIT")
     console.error(ex);
   }
   finally{
@@ -266,7 +279,7 @@ async function sendCoord(msg) {
 }
 
 router.post("/generateCoordinates", function (req, res) {
-  console.log(coordObj)
+  //console.log(coordObj)
   res.status(201).json({msg: coordObj})
     //forked.send({ hello: 'world' });
 });
@@ -281,7 +294,6 @@ router.post("/retrieveOldMessages", function(req, res){
       // Username not in the database
       console.log("Username not in the database");
     } else {
-      console.log("Here")
       for (let person in client.messageHistoryHash){
         if(client.messageHistoryHash[person].partner == req.body.un1){
           for(let msg of client.messageHistoryHash[person].messageLogs){

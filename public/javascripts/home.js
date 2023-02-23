@@ -41,6 +41,20 @@ $(function () {
     //watchDataBase();
     //generateOldMessages();
     //setInterval(generateOldMessages, 500);
+    startListeningForCoord();
+    generateOldMessages();
+    setInterval(generateCoordinates, 500);
+});
+
+function goToGrid(){
+    window.location.replace("grid.html");
+}
+
+function goToHome(){
+    window.location.replace("home.html");
+}
+
+function startListeningForCoord(){
     let shell = {}
     $.ajax({
         url: '/clients/listenForCoord',
@@ -54,16 +68,6 @@ $(function () {
     .fail(function (jqXHR, textStatus, errorThrown) {
         console.log("Failed to listen for coodinates");
     });
-    generateOldMessages();
-    //setInterval(generateCoordinates, 500);
-});
-
-function goToGrid(){
-    window.location.replace("grid.html");
-}
-
-function goToHome(){
-    window.location.replace("home.html");
 }
 
 function logout() {
@@ -75,6 +79,7 @@ function sendMessage1(){
     if($("#sendMessage1").val() == ""){
         return
     }
+    console.log("About to send")
     let content = {
         sender: sessionStorage.getItem("userEmail"),
         receiver: sessionStorage.getItem("un1"),
@@ -89,7 +94,8 @@ function sendMessage1(){
         dataType: 'json'
     }).done(function (data, textStatus, jqXHR) {
         console.log("Message sent successfully")
-        generateOldMessages();
+        setTimeout(generateOldMessages, 200)
+        
         //$("#sendMessage1").val("").trigger('change');
         //$('#sendMessage1').attr('value', '');
     })
@@ -118,7 +124,7 @@ function sendMessage2(){
         dataType: 'json'
     }).done(function (data, textStatus, jqXHR) {
         console.log("Message sent successfully")
-        generateOldMessages();
+        setTimeout(generateOldMessages, 200)
         //$("#sendMessage2").val("").trigger('change');
         //$('#sendMessage2').attr('value', '');
     })
